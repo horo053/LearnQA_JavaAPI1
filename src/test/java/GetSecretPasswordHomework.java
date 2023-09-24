@@ -44,10 +44,10 @@ public class GetSecretPasswordHomework{
                     .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie")
                     .andReturn();
 
-            String request = responseCheck.print();
-            if (request=="You are authorized") {
-                System.out.println("You are authorized");
+            String request = responseCheck.body().asString();
+            if (request.equals("You are authorized")) {
                 System.out.println(passwords.get(i));
+                System.out.println("You are authorized");
             }
         }
     }
