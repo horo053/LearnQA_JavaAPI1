@@ -1,18 +1,18 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LengthStr {
-    @Test
-    public void LengthStrPass(){
-        String str = "Текст менее 15";
-        int length = str.length();
-        assertTrue(length <= 15, "Текст более 15 символов");
-    }
+    @ParameterizedTest
+    @ValueSource(strings = {"Текст менее 15", "Текст более 15 символов"})
+    public void LengthStr(String str){
+        Map<String, String> strLenght = new HashMap<>();
+        strLenght.put("str", str);
 
-    @Test
-    public void LengthStrFail(){
-        String str = "Текст более 15 символов";
         int length = str.length();
         assertTrue(length <= 15, "Текст более 15 символов");
     }
